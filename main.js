@@ -36,7 +36,7 @@ function startGame()
     for (let i = 0; i < getQuantityElements(100); i++){
         const line = document.createElement('div');
         line.classList.add('line');
-        line.style.top = (i * 100) + 'px';
+        line.style.top = `${i * 100}px`;
         line.y = i * 100;
         gameArea.appendChild(line);
     }
@@ -89,14 +89,19 @@ function playGame()
 }
 function startRun(event)
 {
-    event.preventDefault();
-    keys[event.key] = true;
+    if(keys.hasOwnProperty(event.key))
+    {
+        event.preventDefault();
+        keys[event.key] = true;
+    }
 }
 
 function stopRun()
 {
-    event.preventDefault();
-    keys[event.key] = false;
+    if (keys.hasOwnProperty(event.key)) {
+        event.preventDefault();
+        keys[event.key] = false;
+    }   
 }
 
 function moveRoad()
@@ -132,4 +137,3 @@ function moveEnemy()
     });
     
 }
-//14 min
